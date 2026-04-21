@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "name": "mahlako-wa-molo-liquor-city",
+  "builds": [
+    {
+      "src": "client/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/client/$1"
+    }
+  ],
+  "installCommand": "cd client && npm ci",
+  "buildCommand": "cd client && npm run build",
+  "outputDirectory": "client/dist"
+}
