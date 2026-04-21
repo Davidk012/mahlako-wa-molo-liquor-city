@@ -6,232 +6,143 @@ A modern, responsive web application for funeral homes to browse, select, book, 
 
 ### Client Features
 - **User Registration & Login** - Secure authentication for funeral home clients
-- **Equipment Catalog** - Browse tents, chairs, lowering devices, artificial grass, drapes, sound systems, CCTV
-- **Package Selection** - Pre-bundled packages (Basic, Professional, VIP) or custom selections
-- **Real-time Availability** - Check equipment availability for specific dates
-- **Instant Quote Generator** - Dynamic pricing with delivery fees and add-ons
-- **Online Booking** - Complete booking process with date, time, and location details
-- **Payment Integration** - Support for PayFast, Yoco, and Ozow (South African payment gateways)
-- **Booking History** - View past and upcoming bookings with status tracking
-- **WhatsApp Confirmations** - Automated booking confirmations and reminders
 
-### Admin Features
-- **Dashboard Analytics** - Revenue, bookings, and utilization metrics
-- **Booking Management** - View, update, and manage all bookings
-- **Equipment Inventory** - Track equipment availability, maintenance, and rental status
-- **User Management** - Manage client and staff accounts
-- **Staff Assignment** - Assign drivers and setup crews to bookings
-- **Financial Reports** - Monthly revenue, popular items, client rankings
-- **System Settings** - Configure pricing, delivery zones, and notifications
+### Core Functionality
+- **Age Verification Gate** - Mandatory 18+ verification with 24-hour session cookie
+- **WhatsApp Ordering System** - Direct order submission via WhatsApp API
+- **Dual Notification System** - WhatsApp + backup email notifications
+- **Product Catalog** - Filterable catalog with categories (Whiskey, Wine, Beer, Spirits, Ciders, Specials)
+- **Live Store Status** - Real-time open/closed indicator based on South African time
+- **Mobile-First Design** - Responsive design optimized for mobile users
 
-### Staff Features
-- **Mobile-Friendly Dashboard** - View daily assignments and tasks
-- **Task Management** - Mark tasks as picked up, delivered, setup, collected
-- **Photo Upload** - Upload proof of delivery/condition photos
-- **Contact Information** - Quick access to client contact details
-- **GPS Integration** - Get directions to cemetery locations
+### Design & UX
+- **Premium Dark Theme** - Sophisticated dark theme with gold/amber accents
+- **Modern UI Components** - Smooth animations and micro-interactions
+- **Accessibility** - WCAG compliant with proper ARIA labels
+- **SEO Optimized** - Local business schema markup and meta tags
 
-## 🛠 Technology Stack
+### E-commerce Features
+- **Shopping Cart System** - Add/remove items with quantity management
+- **Order Management** - Persistent cart with localStorage
+- **Product Filtering** - Search, category, and price filtering
+- **Special Offers** - Featured products and promotional pricing
+
+## Technology Stack
 
 ### Frontend
-- **React 18** - Modern UI framework
-- **TypeScript** - Type-safe development
-- **Tailwind CSS** - Utility-first CSS framework
-- **React Router** - Client-side routing
-- **React Query** - Server state management
-- **React Hook Form** - Form handling
-- **Lucide React** - Beautiful icons
-- **Vite** - Fast build tool
+- **React 18** with TypeScript
+- **Vite** for fast development
+- **Tailwind CSS** for styling
+- **Framer Motion** for animations
+- **React Router** for navigation
+- **React Hook Form** for form management
+- **React Query** for state management
 
 ### Backend
-- **Node.js** - JavaScript runtime
-- **Express.js** - Web framework
-- **MongoDB** - NoSQL database
-- **Mongoose** - MongoDB object modeling
-- **JWT** - Authentication tokens
-- **bcrypt** - Password hashing
-- **Joi** - Input validation
-- **Multer** - File uploads
-- **Twilio** - WhatsApp API integration
+- **Node.js** with Express
+- **Nodemailer** for email notifications
+- **MongoDB** with Mongoose (optional)
+- **JWT** for authentication (if needed)
 
-## 📋 Installation
+## Project Structure
+
+```
+mahlako-wa-molo-liquor-city/
+├── client/                     # React frontend
+│   ├── src/
+│   │   ├── components/          # Reusable components
+│   │   │   ├── AgeVerification.tsx
+│   │   │   ├── Layout.tsx
+│   │   │   ├── ProductCard.tsx
+│   │   │   ├── OrderSummary.tsx
+│   │   │   ├── StoreStatus.tsx
+│   │   │   └── SEOHead.tsx
+│   │   ├── pages/              # Page components
+│   │   │   ├── Home.tsx
+│   │   │   └── Shop.tsx
+│   │   ├── hooks/              # Custom hooks
+│   │   │   └── useOrder.ts
+│   │   ├── types/              # TypeScript types
+│   │   │   └── product.ts
+│   │   ├── data/               # Static data
+│   │   │   └── products.ts
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   └── index.css
+│   └── public/                 # Static assets
+│       └── images/
+├── server/                     # Express backend
+│   ├── controllers/
+│   │   └── orderController.js
+│   ├── index.js
+│   └── package.json
+└── package.json                # Root package.json
+```
+
+## Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
-- MongoDB 5.0+
+- Node.js 16+ 
 - npm or yarn
+- MongoDB (optional, for data persistence)
 
-### Setup
+### Installation
 
-1. **Clone the repository**
-```bash
-git clone <repository-url>
-cd sfs-funeral-booking
-```
+1. **Clone repository**
+   ```bash
+   git clone <repository-url>
+   cd mahlako-wa-molo-liquor-city
+   ```
 
 2. **Install dependencies**
-```bash
-npm run install-all
-```
+   ```bash
+   npm run install-all
+   ```
 
-3. **Environment Configuration**
-```bash
-# Copy environment template
-cp server/.env.example server/.env
+3. **Environment Setup**
+   ```bash
+   # Copy environment files
+   cp server/.env.example server/.env
+   
+   # Configure environment variables
+   EMAIL_HOST=smtp.gmail.com
+   EMAIL_PORT=587
+   EMAIL_USER=your-email@gmail.com
+   EMAIL_PASS=your-app-password
+   ORDER_EMAIL=mahlakowamolo@gmail.com
+   CLIENT_URL=http://localhost:3000
+   ```
 
-# Edit environment variables
-nano server/.env
-```
+4. **Start Development**
+   ```bash
+   npm run dev
+   ```
 
-4. **Database Setup**
-```bash
-# Start MongoDB service
-sudo systemctl start mongod
+   This starts both frontend (port 3000) and backend (port 5000) concurrently.
 
-# Or use MongoDB Atlas (cloud)
-# Update MONGODB_URI in .env file
-```
+## Configuration
 
-5. **Start Development Servers**
-```bash
-# Start both client and server
-npm run dev
+### WhatsApp Number
+Update the WhatsApp number in:
+- `client/src/components/OrderSummary.tsx` (line ~108)
+- `client/src/pages/Home.tsx` (line ~68)
 
-# Or start individually
-npm run server  # Backend on port 5000
-npm run client  # Frontend on port 3000
-```
+### Email Configuration
+Configure email settings in `server/.env`:
+- `EMAIL_HOST` - SMTP server
+- `EMAIL_USER` - Sender email
+- `EMAIL_PASS` - Email password/app password
+- `ORDER_EMAIL` - Recipient for order notifications
 
-## 🗂 Project Structure
+### Business Information
+Update business details in:
+- `client/src/components/SEOHead.tsx` - Schema markup
+- `client/src/components/Layout.tsx` - Footer and header info
+- `client/src/components/StoreStatus.tsx` - Trading hours
 
-```
-sfs-funeral-booking/
-├── client/                 # React frontend
-│   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   ├── pages/         # Page components
-│   │   ├── hooks/         # Custom React hooks
-│   │   ├── services/      # API services
-│   │   ├── types/         # TypeScript type definitions
-│   │   └── utils/         # Utility functions
-│   ├── public/            # Static assets
-│   └── package.json
-├── server/                # Node.js backend
-│   ├── models/           # Mongoose models
-│   ├── routes/           # API routes
-│   ├── middleware/       # Express middleware
-│   ├── controllers/      # Route controllers
-│   ├── utils/           # Utility functions
-│   └── package.json
-├── shared/               # Shared types/utilities
-└── package.json          # Root package.json
-```
+## Deployment
 
-## 🔧 Configuration
-
-### Environment Variables
-
-#### Server Configuration
-```env
-PORT=5000
-NODE_ENV=development
-MONGODB_URI=mongodb://localhost:27017/sfs-funeral-booking
-JWT_SECRET=your-super-secret-jwt-key
-JWT_EXPIRES_IN=7d
-```
-
-#### Payment Gateways
-```env
-# PayFast
-PAYFAST_MERCHANT_ID=your-payfast-merchant-id
-PAYFAST_MERCHANT_KEY=your-payfast-merchant-key
-
-# Yoco
-YOCO_SECRET_KEY=your-yoco-secret-key
-YOCO_PUBLIC_KEY=your-yoco-public-key
-```
-
-#### WhatsApp Integration
-```env
-TWILIO_ACCOUNT_SID=your-twilio-account-sid
-TWILIO_AUTH_TOKEN=your-twilio-auth-token
-TWILIO_WHATSAPP_NUMBER=whatsapp:+14155238886
-```
-
-## 📱 Usage
-
-### For Funeral Homes (Clients)
-
-1. **Register Account** - Create an account with your funeral home details
-2. **Browse Equipment** - View available equipment and packages
-3. **Select Items** - Choose individual items or pre-configured packages
-4. **Set Date & Location** - Provide funeral date, time, and cemetery details
-5. **Get Quote** - Instant price calculation with delivery fees
-6. **Book & Pay** - Complete booking with online payment
-7. **Track Status** - Monitor booking status and receive WhatsApp updates
-
-### For SFS Administrators
-
-1. **Login as Admin** - Access admin dashboard
-2. **Manage Bookings** - View and manage all client bookings
-3. **Track Inventory** - Monitor equipment availability and maintenance
-4. **Assign Staff** - Assign drivers and setup crews to bookings
-5. **Generate Reports** - View financial and operational reports
-6. **Configure System** - Update pricing, delivery zones, and settings
-
-### For SFS Staff
-
-1. **Login as Staff** - Access mobile-friendly dashboard
-2. **View Tasks** - See daily assignments and delivery schedules
-3. **Update Status** - Mark tasks as picked up, delivered, setup, collected
-4. **Upload Photos** - Provide proof of delivery/condition
-5. **Contact Clients** - Quick access to client contact information
-
-## 🔄 API Documentation
-
-### Authentication Endpoints
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - User login
-- `GET /api/auth/me` - Get current user
-- `PUT /api/auth/profile` - Update user profile
-
-### Equipment Endpoints
-- `GET /api/equipment` - Get all equipment
-- `GET /api/equipment/:id` - Get single equipment
-- `POST /api/equipment` - Create equipment (Admin)
-- `PUT /api/equipment/:id` - Update equipment (Admin)
-- `GET /api/equipment/:id/availability` - Check availability
-
-### Booking Endpoints
-- `GET /api/bookings` - Get bookings (with filters)
-- `POST /api/bookings` - Create new booking
-- `GET /api/bookings/:id` - Get single booking
-- `PUT /api/bookings/:id` - Update booking
-- `POST /api/bookings/quote` - Calculate quote
-
-### Package Endpoints
-- `GET /api/packages` - Get all packages
-- `POST /api/packages` - Create package (Admin)
-- `GET /api/packages/:id/availability` - Check package availability
-
-## 🧪 Testing
-
-```bash
-# Run backend tests
-cd server && npm test
-
-# Run frontend tests
-cd client && npm test
-
-# Run with coverage
-npm run test:coverage
-```
-
-## 🚀 Deployment
-
-### Production Deployment
-
-1. **Build Frontend**
+### Frontend Build
 ```bash
 cd client
 npm run build

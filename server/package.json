@@ -1,7 +1,7 @@
 {
-  "name": "sfs-server",
+  "name": "mahlako-server",
   "version": "1.0.0",
-  "description": "Backend server for SFS Funeral Booking System",
+  "description": "Backend server for Mahlako Wa Molo Liquor City WhatsApp Commerce System",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

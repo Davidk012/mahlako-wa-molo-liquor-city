@@ -1,18 +1,18 @@
 {
-  "name": "sfs-funeral-booking",
+  "name": "mahlako-wa-molo-liquor-city",
   "version": "1.0.0",
-  "description": "Funeral Equipment Booking Web App for Style Funeral Services",
+  "description": "Advanced WhatsApp Commerce Website for Mahlako Wa Molo Liquor City",
   "main": "server/index.js",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd server && npm run dev",
-    "client": "cd client && npm start",
+    "client": "cd client && npm run dev",
     "build": "cd client && npm run build",
     "start": "cd server && npm start",
     "install-all": "npm install && cd server && npm install && cd ../client && npm install"
   },
-  "keywords": ["funeral", "booking", "equipment", "rental"],
-  "author": "Style Funeral Services",
+  "keywords": ["liquor", "whatsapp", "commerce", "ordering", "retail"],
+  "author": "Mahlako Wa Molo Liquor City",
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^8.2.2"
