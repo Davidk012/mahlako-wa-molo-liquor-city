@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import WhatsAppIcon from '../components/WhatsAppIcon';
 import StoreStatus from '../components/StoreStatus';
 
 const Contact: React.FC = () => {
@@ -202,7 +203,7 @@ const Contact: React.FC = () => {
               <div className="space-y-6">
                 <div className="bg-amber-50 p-6 rounded-xl">
                   <div className="flex items-center space-x-4 mb-4">
-                    <MessageCircle className="w-8 h-8 text-amber-600" />
+                    <WhatsAppIcon className="w-8 h-8" />
                     <h3 className="text-xl font-semibold text-gray-900">WhatsApp Orders</h3>
                   </div>
                   <p className="text-gray-600 mb-4">
@@ -214,7 +215,7 @@ const Contact: React.FC = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center space-x-2 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors"
                   >
-                    <MessageCircle className="w-5 h-5" />
+                    <WhatsAppIcon className="w-5 h-5" />
                     <span>Message on WhatsApp</span>
                   </a>
                 </div>

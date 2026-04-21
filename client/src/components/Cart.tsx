@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, X, Plus, Minus, Trash2, MessageCircle, Send } from 'lucide-react';
+import { ShoppingCart, X, Plus, Minus, Trash2, Send } from 'lucide-react';
+import WhatsAppIcon from './WhatsAppIcon';
 import { useOrder } from '../hooks/useOrder';
 import StoreStatus from './StoreStatus';
 
@@ -230,7 +231,7 @@ const Cart: React.FC = () => {
                       onClick={() => setShowOrderForm(true)}
                       className="w-full bg-amber-600 text-white py-4 rounded-lg font-semibold hover:bg-amber-700 transition-colors flex items-center justify-center space-x-2"
                     >
-                      <MessageCircle className="w-5 h-5" />
+                      <WhatsAppIcon className="w-5 h-5" />
                       <span>Order via WhatsApp</span>
                     </button>
                   ) : (
