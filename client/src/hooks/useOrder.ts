@@ -33,16 +33,19 @@ export const useOrder = (): UseOrderReturn => {
   }, [orderItems]);
 
   const addToOrder = (product: Product, quantity: number) => {
+    console.log('Adding to cart:', { product: product.name, quantity });
     setOrderItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === product.id);
       
       if (existingItem) {
+        console.log('Item already exists, updating quantity');
         return prevItems.map(item =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       } else {
+        console.log('Adding new item to cart');
         return [...prevItems, { ...product, quantity }];
       }
     });

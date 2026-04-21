@@ -139,7 +139,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </div>
             </div>
             <button
-              onClick={() => onAddToOrder(product, localQuantity)}
+              onClick={() => {
+                console.log('ProductCard button clicked:', { product: product.name, localQuantity });
+                onAddToOrder(product, localQuantity);
+              }}
               disabled={!product.inStock}
               className="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
             >

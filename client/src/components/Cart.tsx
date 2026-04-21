@@ -7,6 +7,11 @@ import StoreStatus from './StoreStatus';
 
 const Cart: React.FC = () => {
   const { orderItems, removeFromOrder, updateQuantity, getTotalPrice, getTotalItems, clearOrder } = useOrder();
+  
+  // Debug: Log cart items whenever they change
+  React.useEffect(() => {
+    console.log('Cart items updated:', orderItems);
+  }, [orderItems]);
   const [isOpen, setIsOpen] = useState(false);
   const [customerInfo, setCustomerInfo] = useState({
     name: '',
