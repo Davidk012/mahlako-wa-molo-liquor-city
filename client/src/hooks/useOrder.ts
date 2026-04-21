@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { CartItem, OrderDetails } from '../types/product';
+import { CartItem, OrderDetails, Product } from '../types/product';
 
 interface UseOrderReturn {
   orderItems: CartItem[];
-  addToOrder: (product: CartItem) => void;
+  addToOrder: (product: Product, quantity: number) => void;
   removeFromOrder: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearOrder: () => void;
@@ -32,18 +32,18 @@ export const useOrder = (): UseOrderReturn => {
     localStorage.setItem('mahlako-order', JSON.stringify(orderItems));
   }, [orderItems]);
 
-  const addToOrder = (product: CartItem) => {
+  const addToOrder = (product: Product, quantity: number) => {
     setOrderItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === product.id);
       
       if (existingItem) {
         return prevItems.map(item =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       } else {
-        return [...prevItems, { ...product, quantity: 1 }];
+        return [...prevItems, { ...product, quantity }];
       }
     });
   };

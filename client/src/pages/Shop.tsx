@@ -7,7 +7,7 @@ import { products, categories, ProductCategory } from '../data/products';
 import Select from 'react-select';
 
 const Shop: React.FC = () => {
-  const { addToOrder, orderItems } = useOrder();
+  const { addToOrder, orderItems, updateQuantity } = useOrder();
   const [selectedCategory, setSelectedCategory] = useState<ProductCategory | 'all'>('all');
   const [sortBy, setSortBy] = useState<'name' | 'price-low' | 'price-high'>('name');
   const [searchTerm, setSearchTerm] = useState('');
@@ -212,7 +212,8 @@ const Shop: React.FC = () => {
             >
               <ProductCard
                 product={product}
-                onAddToOrder={addToOrder}
+                onAddToOrder={(product, quantity) => addToOrder(product, quantity)}
+                onUpdateQuantity={updateQuantity}
                 isInOrder={orderItems.some(item => item.id === product.id)}
                 quantity={orderItems.find(item => item.id === product.id)?.quantity || 0}
               />

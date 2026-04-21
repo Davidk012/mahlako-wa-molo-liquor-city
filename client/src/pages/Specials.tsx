@@ -7,7 +7,7 @@ import { getSpecials } from '../data/products';
 import { useOrder } from '../hooks/useOrder';
 
 const Specials: React.FC = () => {
-  const { addToOrder, orderItems } = useOrder();
+  const { addToOrder, orderItems, updateQuantity } = useOrder();
   const specials = getSpecials();
 
   return (
@@ -65,7 +65,13 @@ const Specials: React.FC = () => {
                     </div>
                   </div>
                   
-                  <ProductCard product={product} onAddToOrder={() => addToOrder(product)} />
+                  <ProductCard 
+                  product={product} 
+                  onAddToOrder={(product, quantity) => addToOrder(product, quantity)}
+                  onUpdateQuantity={updateQuantity}
+                  isInOrder={orderItems.some(item => item.id === product.id)}
+                  quantity={orderItems.find(item => item.id === product.id)?.quantity || 0}
+                />
                 </motion.div>
               ))}
             </div>

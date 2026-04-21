@@ -10,6 +10,8 @@ const Cart: React.FC = () => {
   const [customerInfo, setCustomerInfo] = useState({
     name: '',
     phone: '',
+    email: '',
+    homeAddress: '',
     collectionTime: ''
   });
   const [showOrderForm, setShowOrderForm] = useState(false);
@@ -30,6 +32,8 @@ const Cart: React.FC = () => {
     message += `*Customer Details:*\n`;
     message += `Name: ${customerInfo.name}\n`;
     message += `Phone: ${customerInfo.phone}\n`;
+    message += `Email: ${customerInfo.email}\n`;
+    message += `Home Address: ${customerInfo.homeAddress}\n`;
     message += `Collection Time: ${customerInfo.collectionTime}\n\n`;
     message += `*Order Items:*\n`;
 
@@ -66,14 +70,14 @@ const Cart: React.FC = () => {
     setTimeout(() => {
       clearOrder();
       setShowOrderForm(false);
-      setCustomerInfo({ name: '', phone: '', collectionTime: '' });
+      setCustomerInfo({ name: '', phone: '', email: '', homeAddress: '', collectionTime: '' });
       setIsOpen(false);
     }, 1000);
   };
 
   const handleSubmitOrder = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!customerInfo.name || !customerInfo.phone || !customerInfo.collectionTime) {
+    if (!customerInfo.name || !customerInfo.phone || !customerInfo.email || !customerInfo.homeAddress || !customerInfo.collectionTime) {
       alert('Please fill in all customer details');
       return;
     }
@@ -247,6 +251,26 @@ const Cart: React.FC = () => {
                           placeholder="Phone Number *"
                           value={customerInfo.phone}
                           onChange={(e) => setCustomerInfo({...customerInfo, phone: e.target.value})}
+                          className="w-full px-4 py-3 border border-amber-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type="email"
+                          placeholder="Email Address *"
+                          value={customerInfo.email}
+                          onChange={(e) => setCustomerInfo({...customerInfo, email: e.target.value})}
+                          className="w-full px-4 py-3 border border-amber-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="Home Address *"
+                          value={customerInfo.homeAddress}
+                          onChange={(e) => setCustomerInfo({...customerInfo, homeAddress: e.target.value})}
                           className="w-full px-4 py-3 border border-amber-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                           required
                         />
