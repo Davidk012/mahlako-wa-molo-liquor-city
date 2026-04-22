@@ -8,6 +8,9 @@ import { useOrder } from '../hooks/useOrder';
 import { getFeaturedProducts, getSpecials } from '../data/products';
 
 const Home: React.FC = () => {
+  const heroImageUrl = '/images/hero-bg.webp';
+  const storeImageUrl = '/images/store-front.jpeg';
+
   const { addToOrder, orderItems, updateQuantity } = useOrder();
   const featuredProducts = getFeaturedProducts();
   const specials = getSpecials();
@@ -21,7 +24,7 @@ const Home: React.FC = () => {
         {/* Background Image/Video Placeholder */}
         <div className="absolute inset-0 bg-gradient-to-br from-amber-100/30 to-white">
           <img
-            src="/images/hero-bg.jpg"
+            src={heroImageUrl}
             alt="Premium Liquor Collection"
             className="w-full h-full object-cover opacity-40"
             onError={(e) => {
@@ -149,11 +152,11 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <div className="relative">
               <img
-                src="/images/store-front.jpg"
+                src={storeImageUrl}
                 alt="Mahlako Wa Molo Store Front"
                 className="w-full h-96 object-cover rounded-2xl shadow-xl"
                 onError={(e) => {
-                  e.currentTarget.src = '/images/placeholder-bottle.jpg';
+                  e.currentTarget.src = '/placeholder-bottle.jpg';
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl flex items-end p-8">
@@ -255,11 +258,11 @@ const Home: React.FC = () => {
             >
               <div className="relative">
                 <img
-                  src="/images/store-front.jpg"
+                  src={storeImageUrl}
                   alt="Mahlako Wa Molo Store Front"
                   className="w-full h-96 object-cover rounded-2xl shadow-xl"
                   onError={(e) => {
-                    e.currentTarget.src = '/images/placeholder-bottle.jpg';
+                    e.currentTarget.src = '/placeholder-bottle.jpg';
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl flex items-end p-8">

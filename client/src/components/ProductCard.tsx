@@ -33,7 +33,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           alt={product.name}
           className="w-full h-48 object-cover"
           onError={(e) => {
-            e.currentTarget.src = '/images/placeholder-bottle.jpg';
+            e.currentTarget.src = '/placeholder-bottle.jpg';
           }}
         />
         

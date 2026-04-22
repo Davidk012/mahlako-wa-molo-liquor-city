@@ -17,6 +17,7 @@ interface Equipment {
 }
 
 const EquipmentCatalog: React.FC = () => {
+  const defaultEquipmentImage = '/images/products-showcase.webp';
   const [equipment, setEquipment] = useState<Equipment[]>([]);
   const [filteredEquipment, setFilteredEquipment] = useState<Equipment[]>([]);
   const [loading, setLoading] = useState(true);
@@ -184,14 +185,21 @@ const EquipmentCatalog: React.FC = () => {
           <div key={item.id} className="card overflow-hidden hover:shadow-lg transition-shadow">
             {/* Image */}
             <div className="h-48 bg-gray-200 flex items-center justify-center">
-              {item.image ? (
+              {(item.image && item.image.trim()) ? (
                 <img
                   src={item.image}
                   alt={item.name}
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = defaultEquipmentImage;
+                  }}
                 />
               ) : (
-                <Package className="w-12 h-12 text-gray-400" />
+                <img
+                  src={defaultEquipmentImage}
+                  alt={`${item.name} placeholder`}
+                  className="w-full h-full object-cover"
+                />
               )}
             </div>
 
