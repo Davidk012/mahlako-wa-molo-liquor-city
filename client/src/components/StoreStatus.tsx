@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Clock, MapPin } from 'lucide-react';
+import { Clock } from 'lucide-react';
 
 interface StoreStatusProps {
   className?: string;
@@ -46,26 +46,19 @@ const StoreStatus: React.FC<StoreStatusProps> = ({ className = '' }) => {
   }, []);
 
   return (
-    <div className={`flex items-center space-x-4 ${className}`}>
-      <div className={`flex items-center space-x-2 px-4 py-2 rounded-full ${
+    <div className={`flex items-center space-x-3 ${className}`}>
+      <div className={`flex items-center space-x-2 px-3 py-1.5 rounded-full text-sm font-medium ${
         isOpen 
-          ? 'bg-green-900 bg-opacity-30 border border-green-600' 
-          : 'bg-red-900 bg-opacity-30 border border-red-600'
+          ? 'bg-green-50 text-green-700 border border-green-200' 
+          : 'bg-red-50 text-red-700 border border-red-200'
       }`}>
-        <div className={`w-3 h-3 rounded-full ${isOpen ? 'bg-green-500' : 'bg-red-500'} animate-pulse`}></div>
-        <span className={`font-semibold text-sm ${isOpen ? 'text-green-400' : 'text-red-400'}`}>
-          {isOpen ? '🟢 Open Now' : '🔴 Currently Closed'}
-        </span>
+        <div className={`w-2 h-2 rounded-full ${isOpen ? 'bg-green-500' : 'bg-red-500'} animate-pulse`}></div>
+        <span>{isOpen ? 'Open' : 'Closed'}</span>
       </div>
       
-      <div className="flex items-center space-x-2 text-amber-300">
-        <Clock className="w-4 h-4" />
-        <span className="text-sm font-medium">{currentTime} SAST</span>
-      </div>
-      
-      <div className="flex items-center space-x-2 text-amber-300">
-        <MapPin className="w-4 h-4" />
-        <span className="text-sm">2019 Hlapo Roadway</span>
+      <div className="flex items-center space-x-1.5 text-gray-500 text-sm">
+        <Clock className="w-3.5 h-3.5" />
+        <span>{currentTime}</span>
       </div>
     </div>
   );
